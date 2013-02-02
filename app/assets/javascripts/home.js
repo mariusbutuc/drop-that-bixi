@@ -34,8 +34,10 @@ DTB.home = {
 
 
     var defaultIcon = L.icon({
-      iconUrl: '/assets/marker-icon.png',
-      shadowUrl: '/assets/marker-shadow.png',
+      iconUrl:      '/assets/marker-red-pin.png',
+      iconSize:     [64, 64],
+      iconAnchor:   [32, 60],
+      popupAnchor:  [0, -60]
     });
 
     var bikeIcon = L.icon({
