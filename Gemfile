@@ -13,4 +13,5 @@ gem 'jquery-rails'
 group :assets do
   gem 'sass-rails'
   gem 'uglifier'
+  gem 'twitter-bootstrap-rails'
 end
