@@ -17,11 +17,8 @@ DTB.home = {
 
     DTB.maps.init(latitude, longitude);
 
-    $('#location').text('latitude: ' + latitude + ' longitude: ' + longitude);
-    console.log(location.coords);
-
     // send request to ajax endpoint
-    var url = '/stations.json';
+    var url = '/stations.json?latitude=' + latitude + '&longitude=' + longitude;
     $.ajax(url, {
       success: DTB.home.getStations
     });
