@@ -13,7 +13,6 @@ gem 'google-geocode'
 
 # web front-end
 gem 'jquery-rails'
-gem 'modernizr-rails'
 gem 'twitter-bootstrap-rails'
 gem "libv8"
 gem "therubyracer"
