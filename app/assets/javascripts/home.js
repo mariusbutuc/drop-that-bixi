@@ -56,8 +56,8 @@ DTB.home = {
 
       marker = L.marker([data[station].latitude, data[station].longitude], {icon: bikeIcon}).addTo(map);
       marker.bindPopup('<strong>' + data[station].name + '</strong><br>'
-        + '&middot; ' + data[station].numBikes + ' available bixies<br/>'
-        + '&middot; ' + data[station].spacesFree + ' free spots<br>'
+        + '&middot; ' + data[station].numBikes + ' available Bixi bikes<br/>'
+        + '&middot; ' + data[station].spacesFree + ' empty spaces<br>'
         + 'Last change ' + date
       );
     }
@@ -65,7 +65,7 @@ DTB.home = {
     function onLocationFound(e) {
       var radius = e.accuracy / 2;
       L.marker(e.latlng, {icon: defaultIcon}).addTo(map)
-        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+        .bindPopup("You are here").openPopup();
       L.circle(e.latlng, radius).addTo(map);
     }
 
