@@ -24,6 +24,10 @@
        1px 1px 0 #000;
 }
 
+#logo a:active, #logo :visited {
+  color: #FFA500;
+}
+
 .leaflet-popup-tip {
   margin: -14px auto 0;
 }
