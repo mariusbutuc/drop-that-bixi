@@ -33,13 +33,10 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-<<<<<<< HEAD
+    geocoder (1.1.6)
     google-geocode (1.2.1)
       hoe (>= 1.1.4)
       rc-rest (>= 2.0.0)
-=======
-    geocoder (1.1.6)
->>>>>>> github/master
     hike (1.2.1)
     hoe (3.5.0)
       rake (>= 0.8, < 11.0)
@@ -115,11 +112,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-<<<<<<< HEAD
-  google-geocode
-=======
   geocoder
->>>>>>> github/master
+  google-geocode
   jquery-rails
   nokogiri
   pg

@@ -11,9 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202021558) do
+ActiveRecord::Schema.define(:version => 20130202033722) do
 
-  create_table "station", :force => true do |t|
+  create_table "station_histories", :force => true do |t|
+    t.integer  "lastCommWithServer"
+    t.boolean  "installed"
+    t.boolean  "locked"
+    t.boolean  "temporary"
+    t.boolean  "public"
+    t.integer  "nbBikes"
+    t.integer  "nbEmptyDocks"
+    t.integer  "latestUpdateTime"
+    t.integer  "station_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "stations", :force => true do |t|
     t.integer  "bixi_id"
     t.string   "name"
     t.string   "terminalName"
@@ -23,19 +37,6 @@ ActiveRecord::Schema.define(:version => 20130202021558) do
     t.integer  "removalDate"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-  end
-
-  create_table "station_history", :force => true do |t|
-    t.integer  "lastCommWithServer"
-    t.boolean  "installed"
-    t.boolean  "locked"
-    t.boolean  "temporary"
-    t.boolean  "public"
-    t.integer  "nbBikes"
-    t.integer  "nbEmptyDocks"
-    t.integer  "latestUpdateTime"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
   end
 
 end
