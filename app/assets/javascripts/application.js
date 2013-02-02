@@ -9,4 +9,5 @@
 //= require twitter/bootstrap
 //= require jquery.timeago
 //= require leaflet
+//= require leaflet-hash
 //= require_tree .
