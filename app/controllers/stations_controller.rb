@@ -3,20 +3,27 @@ class StationsController < ApplicationController
 
   def index
     nfa = []
-    Station.all.each do |station|
-      history = station.station_histories.last
-      res = {
-        id: station.id,
-        name: station.name,
-        numBikes: history.nbBikes,
-        spacesFree: history.nbEmptyDocks,
-        lastUpdate: history.latestUpdateTime,
-        latitude: station.latitude,
-        longitude: station.longitude
-      }
-      nfa << res
-    end
-    
+    Station.all.each {|station| nfa << station.getInfo}
+    LookupRequest.create(:latitude => params[:latitude], :longitude => params[:longitude])
+
+    respond_with nfa.to_json
+  end
+
+  def findBikes
+    nfa = []
+    cur_loc = LookupRequest.create(:latitude => params[:latitude], :longitude => params[:longitude])
+    fakey = Station.new(:latitude => cur_loc.latitude, :longitude => cur_loc.longitude)
+    fakey.nearbys(0.3).each {|station| nfa << station.getInfo if station.latestHasBikes}
+
+    respond_with nfa.to_json
+  end
+
+  def findSpaces
+    nfa = []
+    cur_loc = LookupRequest.create(:latitude => params[:latitude], :longitude => params[:longitude])
+    fakey = Station.new(:latitude => cur_loc.latitude, :longitude => cur_loc.longitude)
+    fakey.nearbys(0.3).each {|station| nfa << station.getInfo if station.latestHasSpaces}
+
     respond_with nfa.to_json
   end
 

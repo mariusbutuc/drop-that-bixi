@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202033722) do
+ActiveRecord::Schema.define(:version => 20130202123022) do
+
+  create_table "lookup_requests", :force => true do |t|
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "station_histories", :force => true do |t|
     t.string   "lastCommWithServer"
@@ -33,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20130202033722) do
     t.string   "terminalName"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "installDate"
-    t.string   "removalDate"
+    t.integer  "installDate"
+    t.integer  "removalDate"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
