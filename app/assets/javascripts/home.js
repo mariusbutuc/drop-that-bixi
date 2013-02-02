@@ -18,7 +18,7 @@ DTB.home = {
     console.log(location.coords);
     
     // send request to ajax endpoint
-    var url = '/stations/closest.json?lat=' + latitude + '&long=' + longitude;
+    var url = '/stations.json?lat=' + latitude + '&long=' + longitude;
     console.log(url);
     $.ajax(url, {
       success: this.getClosestStations
