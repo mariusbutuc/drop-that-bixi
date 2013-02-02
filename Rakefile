@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-UStore::Application.load_tasks
+DropThatBixi::Application.load_tasks
