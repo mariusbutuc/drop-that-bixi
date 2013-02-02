@@ -2,14 +2,20 @@ class StationsController < ApplicationController
   respond_to :json
 
   def index
-    nfa = {}
-    Station.select('id, bixi_id, name, latitude, longitude').all.each do |station|
+    nfa = []
+    Station.all.each do |station|
       history = station.station_histories.last
-      res = station.to_json
-      res.concat(",history:{#{history.to_json}}")
-      nfa[station.bixi_id] = res
+      res = {
+        id: station.id,
+        name: station.name,
+        numBikes: history.nbBikes,
+        spacesFree: history.nbEmptyDocks
+      }
+      nfa << res
     end
-    respond_with nfa.to_json
+    
+    response = {stations: nfa}
+    respond_with response.to_json
   end
 
 end
