@@ -26,12 +26,21 @@ DTB.home = {
     // });
 
     var map = L.map('map').setView([latitude, longitude], 17);
-    console.log(latitude);
-    console.log(longitude);
+
     // add an OpenStreetMap tile layer
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // add Leaflet.Locate: A useful control to geolocate the user with many options.
+    L.control.locate({
+      position: 'topleft',  // set the location of the control
+      drawCircle: true,  // controls whether a circle is drawn that shows the uncertainty about the location
+      follow: false,  // follow the location if `watch` and `setView` are set to true in locateOptions
+      circleStyle: {},  // change the style of the circle around the user's location
+      markerStyle: {},
+      metric: true  // use metric or imperial units
     }).addTo(map);
 
     // var circle = L.circle([latitude, longitude], 70, {
