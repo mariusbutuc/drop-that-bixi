@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(:version => 20130202033722) do
     t.integer  "bixi_id"
     t.string   "name"
     t.string   "terminalName"
-    t.integer  "lat"
-    t.integer  "long"
+    t.float    "latitude"
+    t.float    "longitude"
     t.integer  "installDate"
     t.integer  "removalDate"
     t.datetime "created_at",   :null => false
