@@ -5,7 +5,6 @@ gem 'rails', '3.2.11'
 ruby '1.9.3'
 gem 'nokogiri'
 gem 'geocoder'
-gem 'thin'
 
 # db
 gem 'pg'
@@ -17,6 +16,12 @@ gem 'twitter-bootstrap-rails'
 gem "libv8"
 gem "therubyracer"
 gem "haml"
+
+group :development do
+  gem 'annotate'
+  gem 'thin'
+  gem 'railroady'
+end
 
 group :assets do
   gem 'sass-rails'
