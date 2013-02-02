@@ -3,9 +3,12 @@ source 'http://rubygems.org'
 # core
 gem 'rails', '3.2.11'
 ruby '1.9.3'
+gem 'nokogiri'
+gem 'geocoder'
 
 # db
-gem "pg"
+gem 'pg'
+gem 'google-geocode'
 
 # web front-end
 gem 'jquery-rails'
