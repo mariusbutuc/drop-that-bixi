@@ -9,6 +9,6 @@
 //= require twitter/bootstrap
 //= require jquery.timeago
 //= require leaflet
-//= require leaflet-hash
+//= require leaflet.hash
 //= require L.Control.Locate
 //= require_tree .

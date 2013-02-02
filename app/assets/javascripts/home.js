@@ -34,6 +34,22 @@ DTB.home = {
       station;
     var map = L.map('map');
 
+    var params = {};
+    var href_parts = window.location.href.split("/#");
+
+    if (href_parts.length > 1) {
+      var scraped_params = href_parts[1].split("/");
+      params['z']   = scraped_params[0];
+      params['lat'] = scraped_params[1];
+      params['lng'] = scraped_params[2];
+    }
+
+    if( params.hasOwnProperty('lat') && params.hasOwnProperty('lng') ) {
+      map.setView([params['lat'], params['lng']], params['z']);
+    } else {
+      map.locate({setView: true, maxZoom: 16});
+    }
+
     // add an OpenStreetMap tile layer
     open_street_map_tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 18
@@ -42,7 +58,9 @@ DTB.home = {
     open_street_map_tiles.addTo(map);
 
     // persist app state in the URL
-    hash = new L.Hash(map);
+    // hash = new L.Hash(map);
+    map.addHash();
+
 
     // add the Locate control
     control = L.control.locate().addTo(map);
@@ -127,8 +145,6 @@ DTB.home = {
     }
 
     map.on('locationfound', onLocationFound);
-
-    map.locate({setView: true, maxZoom: 16});
   },
 
   loadLocationError: function (e) {
