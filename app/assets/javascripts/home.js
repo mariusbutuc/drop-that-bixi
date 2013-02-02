@@ -45,9 +45,9 @@ DTB.home = {
 
       marker = L.marker([data[station].latitude, data[station].longitude], {icon: bikeIcon}).addTo(map);
       marker.bindPopup('<strong>' + data[station].name + '</strong><br>'
-        + '&middot; ' + data[station].numBikes + ' available bixies,<br/>'
+        + '&middot; ' + data[station].numBikes + ' available bixies<br/>'
         + '&middot; ' + data[station].spacesFree + ' free spots<br>'
-        + 'Updated ' + date
+        + 'Last change ' + date
       );
     }
   },
