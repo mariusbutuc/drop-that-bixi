@@ -54,7 +54,7 @@ DTB.home = {
       popupAnchor:  [0, -60]
     });
 
-    var bikeIcon = L.icon({
+    var badBikeIcon = L.icon({
       iconUrl:      '/assets/marker-bike.png',
       shadowUrl:    '/assets/marker-shadow.png',
       iconSize:     [32, 37], // size of the icon
