@@ -13,7 +13,7 @@ class StationsController < ApplicationController
     nfa = []
     cur_loc = LookupRequest.create(:latitude => params[:latitude], :longitude => params[:longitude])
     fakey = Station.new(:latitude => cur_loc.latitude, :longitude => cur_loc.longitude)
-    fakey.nearbys(0.3).each {|station| nfa << station.getInfo if station.latestHasBikes}
+    fakey.nearbys(0.3, :order => 'distance').limit(3).each {|station| nfa << station.getInfo if station.latestHasBikes}
 
     respond_with nfa.to_json
   end

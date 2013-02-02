@@ -5,6 +5,8 @@
  *= require_self
  *= require leaflet
  *= require leaflet.ie
+ *= require L.Control.Locate
+
  *= require home
  *= require bootstrap.min
 */
@@ -15,4 +17,5 @@ body {
 
 html, body, #map {
   height: 100%;
+  font-family: 'Droid Sans', sans-serif;
 }
