@@ -1,7 +1,7 @@
 desc "This task is called by Heroku scheduler"
 
-task :update_bixi_stations => environment do
+task :fetch_station_data => :environment do
   puts "Getting latest bixi info"
-  BixiStationHandler.refreshInfo
+  StationUpdater.refreshInfo
   puts "Update done"
 end

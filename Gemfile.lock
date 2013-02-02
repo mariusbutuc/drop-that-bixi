@@ -39,9 +39,6 @@ GEM
     hike (1.2.1)
     hoe (3.5.0)
       rake (>= 0.8, < 11.0)
-    httparty (0.10.2)
-      multi_json (~> 1.0)
-      multi_xml (>= 0.5.2)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.2.0)
@@ -54,7 +51,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.19)
     multi_json (1.5.0)
-    multi_xml (0.5.2)
     net-http-persistent (1.9)
     nokogiri (1.5.6)
     pg (0.14.1)
@@ -112,8 +108,8 @@ PLATFORMS
 
 DEPENDENCIES
   google-geocode
-  httparty
   jquery-rails
+  nokogiri
   pg
   rails (= 3.2.11)
   sass-rails
