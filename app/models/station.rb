@@ -29,7 +29,7 @@ class Station < ActiveRecord::Base
       name: name,
       numBikes: history.nbBikes,
       spacesFree: history.nbEmptyDocks,
-      lastUpdate: history.latestUpdateTime,
+      lastUpdate: history.lastCommWithServer,
       latitude: latitude,
       longitude: longitude
     }

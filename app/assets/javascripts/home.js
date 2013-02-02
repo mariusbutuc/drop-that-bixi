@@ -7,16 +7,39 @@ DTB.home = {
 
   init: function () {
     if ($('html.geolocation').length) {
-      navigator.geolocation.getCurrentPosition(this.loadLocation, this.loadLocationError);
+      navigator.geolocation.getCurrentPosition(this.loadAllLocations, this.loadLocationError);
     }
   },
 
-  loadLocation: function (location) {
+  loadAllLocations: function (location) {
+    $('#all-locs').button('toggle');
     var latitude = location.coords.latitude;
     var longitude = location.coords.longitude;
 
     // send request to ajax endpoint
     var url = '/stations.json?latitude=' + latitude + '&longitude=' + longitude;
+    $.ajax(url, {
+      success: DTB.home.getStations
+    });
+  },
+
+  loadBikeLocations: function (location) {
+    $('#bike-locs').button('toggle');
+    var latitude = location.coords.latitude;
+    var longitude = location.coords.longitude;
+
+    var url = '/stations/findBikes.json?latitude=' + latitude + '&longitude=' + longitude;
+    $.ajax(url, {
+      success: DTB.home.getStations
+    });
+  },
+
+  loadSpaceLocations: function (location) {
+    $('#space-locs').button('toggle');
+    var latitude = location.coords.latitude;
+    var longitude = location.coords.longitude;
+
+    var url = '/stations/findSpaces.json?latitude=' + latitude + '&longitude=' + longitude;
     $.ajax(url, {
       success: DTB.home.getStations
     });
@@ -82,4 +105,14 @@ DTB.home = {
 
 $(function () {
   DTB.home.init();
+
+  $('#all-locs').click(function() {
+    navigator.geolocation.getCurrentPosition(DTB.home.loadAllLocations, DTB.home.loadLocationError);
+  });
+  $('#bike-locs').click(function() {
+    navigator.geolocation.getCurrentPosition(DTB.home.loadBikeLocations, DTB.home.loadLocationError);
+  });
+  $('#space-locs').click(function() {
+    navigator.geolocation.getCurrentPosition(DTB.home.loadSpaceLocations, DTB.home.loadLocationError);
+  });
 });

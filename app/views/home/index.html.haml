@@ -2,11 +2,11 @@
   %h1
     = link_to image_tag('/assets/drop-that-bixi.png', alt: 'Drop that Bixi' ), root_path
     Drop that Bixi
-  %p Using the interwebz to find where you can get on, or drop off, a bixi
+  %p Using the interwebz to find where you can get on, or drop off, a bixi in Toronto
 
 .btn-group{"data-toggle" => "buttons-radio"}
-  .btn.btn-large "Large button"
-  .btn.btn-large "Find nearby Bixi to ride"
-  .btn.btn-large "Find nearby Space to park Bixi"
+  .btn.btn-large#all-locs See all Bixi locations
+  .btn.btn-large#bike-locs Find nearby Bixi to ride
+  .btn.btn-large#space-locs Find nearby Space to park Bixi
 
 #map
