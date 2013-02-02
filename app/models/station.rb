@@ -19,5 +19,4 @@ class Station < ActiveRecord::Base
   GHETTO_ATTRS = ['name', 'terminalName', 'installDate', 'removalDate']
 
   has_many :station_histories
-
 end
