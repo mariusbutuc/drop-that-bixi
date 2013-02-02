@@ -4,6 +4,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.11'
 ruby '1.9.3'
 gem 'nokogiri'
+gem 'geocoder'
 
 # db
 gem 'pg'
@@ -15,4 +16,5 @@ gem 'jquery-rails'
 group :assets do
   gem 'sass-rails'
   gem 'uglifier'
+  gem 'twitter-bootstrap-rails'
 end
