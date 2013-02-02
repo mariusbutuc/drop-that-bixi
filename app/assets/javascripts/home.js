@@ -52,7 +52,7 @@ DTB.home = {
     // add an OpenStreetMap tile layer
     current_position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
-      attribution: '&copy;2013 DropThatBixi &amp; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
 
