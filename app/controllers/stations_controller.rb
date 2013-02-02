@@ -16,9 +16,8 @@ class StationsController < ApplicationController
       }
       nfa << res
     end
-
-    response = {stations: nfa}
-    respond_with response.to_json
+    
+    respond_with nfa.to_json
   end
 
 end

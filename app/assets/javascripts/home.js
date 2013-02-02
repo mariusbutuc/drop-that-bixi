@@ -19,10 +19,9 @@ DTB.home = {
     console.log(location.coords);
 
     // send request to ajax endpoint
-    var url = '/stations.json?lat=' + latitude + '&long=' + longitude;
-    console.log(url);
+    var url = '/stations.json';
     $.ajax(url, {
-      success: this.getClosestStations
+      success: DTB.home.getStations
     });
 
     var map = L.map('map').setView([latitude, longitude], 17);
@@ -59,8 +58,13 @@ DTB.home = {
     // marker.openPopup();
   },
 
-  getClosestStations: function (data, status, jqXKR) {
+  getStations: function (data, status, jqXHR) {
     var $stations = $('#stations');
+    
+    $stations.text('');
+    for (var a in data) {
+      $stations.append($('<div>').addClass('station').text(data[a].name));
+    }
   },
 
   loadLocationError: function (e) {
