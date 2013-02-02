@@ -43,12 +43,6 @@ DTB.home = {
       metric: true  // use metric or imperial units
     }).addTo(map);
 
-    // var circle = L.circle([latitude, longitude], 70, {
-    //   color: 'red',
-    //   fillColor: '#f03',
-    //   fillOpacity: 0.5
-    // }).addTo(map);
-
     var bikeIcon = L.icon({
       iconUrl: '/assets/marker-bike.png',
       shadowUrl: '/assets/marker-shadow.png',
