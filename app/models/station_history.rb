@@ -17,7 +17,8 @@
 #
 
 class StationHistory < ActiveRecord::Base
-  attr_accessor :lastCommWithServer, :installed, :locked, :temporary, :public, :nbBikes, :nbEmptyDocks, :latestUpdateTime
+  attr_accessible :lastCommWithServer, :installed, :locked, :temporary, :public, :nbBikes, :nbEmptyDocks, :latestUpdateTime
+  GHETTO_ATTRS = ['lastCommWithServer', 'installed', 'locked', 'public', 'nbBikes', 'nbEmptyDocks', 'latestUpdateTime']
 
   belongs_to :station
 
