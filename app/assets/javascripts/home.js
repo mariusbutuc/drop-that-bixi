@@ -33,6 +33,8 @@ DTB.home = {
       attribution: '&copy;2013 Tripod Inc'
     }).addTo(map);
 
+    var hash = new L.Hash(map);
+
     var defaultIcon = L.icon({
       iconUrl:      '/assets/marker-red-pin.png',
       iconSize:     [64, 64],
