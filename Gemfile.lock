@@ -130,6 +130,7 @@ PLATFORMS
 DEPENDENCIES
   geocoder
   google-geocode
+  haml
   haml-rails
   jquery-rails
   less-rails
