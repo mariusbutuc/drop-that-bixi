@@ -12,8 +12,21 @@ DTB.home = {
   },
   
   loadLocation: function (location) {
-    $('#location').text('latitude: ' + location.coords.latitude + ' longitude: ' + location.coords.longitude);
+    var latitude = location.coords.latitude;
+    var longitude = location.coords.longitude;
+    $('#location').text('latitude: ' + latitude + ' longitude: ' + longitude);
     console.log(location.coords);
+    
+    // send request to ajax endpoint
+    var url = '/stations/closest.json?lat=' + latitude + '&long=' + longitude;
+    console.log(url);
+    $.ajax(url, {
+      success: this.getClosestStations
+    });
+  },
+  
+  getClosestStations: function (data, status, jqXKR) {
+    var $stations = $('#stations');
   },
   
   loadLocationError: function (e) {
