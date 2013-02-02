@@ -42,8 +42,8 @@ DTB.home = {
       popupAnchor:  [0, -60]
     });
 
-    var bikeIcon = L.icon({
-      iconUrl: '/assets/marker-bike.png',
+    var badBikeIcon = L.icon({
+      iconUrl: '/assets/marker-bike-bad.png',
       shadowUrl: '/assets/marker-shadow.png',
 
       iconSize:     [32, 37], // size of the icon
@@ -52,11 +52,30 @@ DTB.home = {
       shadowAnchor: [17, 38], // the same for the shadow
       popupAnchor:  [0, -26]  // point from which the popup should open relative to the iconAnchor
     });
+    
+    var goodBikeIcon = L.icon({
+      iconUrl: '/assets/marker-bike-good.png',
+      shadowUrl: '/assets/marker-shadow.png',
+      
+      iconSize:     [32, 37], // size of the icon
+      shadowSize:   [41, 41], // size of the shadow
+      iconAnchor:   [20, 36], // point of the icon which will correspond to marker's location
+      shadowAnchor: [17, 38], // the same for the shadow
+      popupAnchor:  [0, -26]  // point from which the popup should open relative to the iconAnchor
+    });
 
     for (station in data) {
-      var date = $.timeago( new Date(Number(data[station].lastUpdate)))
+      var s = data[station];
+      var date = $.timeago( new Date(Number(data[station].lastUpdate)));
+      var icon;
+      
+      if (s.numBikes == 0) {
+        icon = badBikeIcon;
+      } else {
+        icon = goodBikeIcon;
+      }
 
-      marker = L.marker([data[station].latitude, data[station].longitude], {icon: bikeIcon}).addTo(map);
+      marker = L.marker([data[station].latitude, data[station].longitude], {icon: icon}).addTo(map);
       marker.bindPopup('<strong>' + data[station].name + '</strong><br>'
         + '&middot; ' + data[station].numBikes + ' available bixies<br/>'
         + '&middot; ' + data[station].spacesFree + ' free spots<br>'
