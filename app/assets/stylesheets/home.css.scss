@@ -24,3 +24,18 @@
 .leaflet-popup-tip {
   margin: -14px auto 0;
 }
+
+#buttons {
+  position: fixed;
+  bottom: 10px;
+  z-index: 1000;
+  width:100%;
+
+  .btn-group {
+    max-width: 400px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+
