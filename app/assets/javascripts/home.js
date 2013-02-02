@@ -4,31 +4,62 @@
 var DTB = DTB || {};
 
 DTB.home = {
-  
+
   init: function () {
     if ($('html.geolocation').length) {
       navigator.geolocation.getCurrentPosition(this.loadLocation, this.loadLocationError);
     }
   },
-  
+
   loadLocation: function (location) {
     var latitude = location.coords.latitude;
     var longitude = location.coords.longitude;
+
     $('#location').text('latitude: ' + latitude + ' longitude: ' + longitude);
     console.log(location.coords);
-    
+
     // send request to ajax endpoint
     var url = '/stations.json?lat=' + latitude + '&long=' + longitude;
     console.log(url);
-    $.ajax(url, {
-      success: this.getClosestStations
+    // $.ajax(url, {
+    //   success: this.getClosestStations
+    // });
+
+    var map = L.map('map').setView([latitude, longitude], 17);
+    console.log(latitude);
+    console.log(longitude);
+    // add an OpenStreetMap tile layer
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // var circle = L.circle([latitude, longitude], 70, {
+    //   color: 'red',
+    //   fillColor: '#f03',
+    //   fillOpacity: 0.5
+    // }).addTo(map);
+
+    var bikeIcon = L.icon({
+      iconUrl: '/assets/marker-bike.png',
+      shadowUrl: '/assets/marker-shadow.png',
+
+      iconSize:     [32, 37], // size of the icon
+      shadowSize:   [41, 41], // size of the shadow
+      iconAnchor:   [20, 36], // point of the icon which will correspond to marker's location
+      shadowAnchor: [17, 38],  // the same for the shadow
+      popupAnchor:  [0, -26] // point from which the popup should open relative to the iconAnchor
     });
+
+    var marker = L.marker([latitude, longitude], {icon: bikeIcon}).addTo(map);
+    marker.bindPopup('<strong>5/17</strong> bycicles,<br/> available <em>5 mins ago</em>.');
+    // marker.openPopup();
   },
-  
+
   getClosestStations: function (data, status, jqXKR) {
     var $stations = $('#stations');
   },
-  
+
   loadLocationError: function (e) {
     console.log(e);
   }
