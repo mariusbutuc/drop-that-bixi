@@ -9,11 +9,14 @@ class StationsController < ApplicationController
         id: station.id,
         name: station.name,
         numBikes: history.nbBikes,
-        spacesFree: history.nbEmptyDocks
+        spacesFree: history.nbEmptyDocks,
+        lastUpdate: history.latestUpdateTime,
+        latitude: station.latitude,
+        longitude: station.longitude
       }
       nfa << res
     end
-    
+
     response = {stations: nfa}
     respond_with response.to_json
   end
