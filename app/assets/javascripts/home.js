@@ -8,6 +8,7 @@ DTB.home = {
   init: function () {
     if ($('html.geolocation').length) {
       navigator.geolocation.getCurrentPosition(this.loadAllLocations, this.loadLocationError);
+      $('#find-bixi').button('toggle');
     }
   },
 
@@ -138,6 +139,13 @@ DTB.home = {
 
 $(function () {
   DTB.home.init();
+
+  $('#find-bixi').click(function() {
+    $('#find-bixi').button('toggle');
+  });
+  $('#drop-bixi').click(function() {
+    $('#drop-bixi').button('toggle');
+  });
 
   $('#location-share').click(function() {
     window.prompt ("Copy to clipboard: Ctrl+C, Enter", "http://"+window.location.pathname);
