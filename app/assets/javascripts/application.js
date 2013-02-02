@@ -14,10 +14,15 @@
 var DTB = DTB || {}
 
 DTB.maps = {
-  
+
   map: {},
+  latitude: 0,
+  longitude: 0,
+
   init: function(latitude, longitude) {
-     this.map = L.map('map').setView([latitude, longitude], 17);
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.map = L.map('map').setView([latitude, longitude], 16);
 
     // add an OpenStreetMap tile layer
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -34,21 +39,6 @@ DTB.maps = {
       markerStyle: {},
       metric: true  // use metric or imperial units
     }).addTo(this.map);
-
-    var bikeIcon = L.icon({
-      iconUrl: '/assets/marker-bike.png',
-      shadowUrl: '/assets/marker-shadow.png',
-
-      iconSize:     [32, 37], // size of the icon
-      shadowSize:   [41, 41], // size of the shadow
-      iconAnchor:   [20, 36], // point of the icon which will correspond to marker's location
-      shadowAnchor: [17, 38],  // the same for the shadow
-      popupAnchor:  [0, -26] // point from which the popup should open relative to the iconAnchor
-    });
-
-    var marker = L.marker([latitude, longitude], {icon: bikeIcon}).addTo(this.map);
-    marker.bindPopup('<strong>5/17</strong> bycicles,<br/> available <em>5 mins ago</em>.');
-    // marker.openPopup();
   }
 
 }
