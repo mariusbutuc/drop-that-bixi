@@ -16,6 +16,9 @@ gem 'jquery-rails'
 group :assets do
   gem 'sass-rails'
   gem 'uglifier'
+  gem "libv8"
+  gem "therubyracer"
+  gem "less-rails"
   gem 'twitter-bootstrap-rails'
   gem 'haml-rails'
 end
