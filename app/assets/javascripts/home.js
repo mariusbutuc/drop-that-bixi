@@ -54,20 +54,20 @@ DTB.home = {
       popupAnchor:  [0, -60]
     });
 
-    var badBikeIcon = L.icon({
-      iconUrl: '/assets/marker-bike-bad.png',
-      shadowUrl: '/assets/marker-shadow.png',
+    var bikeIcon = L.icon({
+      iconUrl:      '/assets/marker-bike.png',
+      shadowUrl:    '/assets/marker-shadow.png',
       iconSize:     [32, 37], // size of the icon
       shadowSize:   [41, 41], // size of the shadow
       iconAnchor:   [20, 36], // point of the icon which will correspond to marker's location
       shadowAnchor: [17, 38], // the same for the shadow
       popupAnchor:  [0, -26]  // point from which the popup should open relative to the iconAnchor
     });
-    
+
     var goodBikeIcon = L.icon({
       iconUrl: '/assets/marker-bike-good.png',
       shadowUrl: '/assets/marker-shadow.png',
-      
+
       iconSize:     [32, 37], // size of the icon
       shadowSize:   [41, 41], // size of the shadow
       iconAnchor:   [20, 36], // point of the icon which will correspond to marker's location
@@ -79,7 +79,7 @@ DTB.home = {
       var s = data[station];
       var date = $.timeago( new Date(Number(data[station].lastUpdate)));
       var icon;
-      
+
       if (s.numBikes == 0) {
         icon = badBikeIcon;
       } else {
@@ -109,7 +109,6 @@ DTB.home = {
   loadLocationError: function (e) {
     console.log(e);
   }
-
 }
 
 $(function () {
