@@ -5,6 +5,7 @@
  *= require_self
  *= require leaflet
  *= require leaflet.ie
+ *= require L.Control.Locate
 
  *= require home
 */

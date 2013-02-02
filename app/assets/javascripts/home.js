@@ -24,16 +24,28 @@ DTB.home = {
   },
 
   getStations: function (data, status, jqXHR) {
-    var current_position, marker, station;
+    var
+      control,
+      current_position, 
+      hash,
+      marker,
+      open_street_map_tiles,
+      station;
     var map = L.map('map');
 
     // add an OpenStreetMap tile layer
-    current_position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    open_street_map_tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy;2013 Tripod Inc'
-    }).addTo(map);
+    });
 
-    var hash = new L.Hash(map);
+    open_street_map_tiles.addTo(map);
+
+    // persist app state in the URL
+    hash = new L.Hash(map);
+
+    // add the Locate control
+    control = L.control.locate().addTo(map);
 
     var defaultIcon = L.icon({
       iconUrl:      '/assets/marker-red-pin.png',
@@ -45,7 +57,6 @@ DTB.home = {
     var bikeIcon = L.icon({
       iconUrl: '/assets/marker-bike.png',
       shadowUrl: '/assets/marker-shadow.png',
-
       iconSize:     [32, 37], // size of the icon
       shadowSize:   [41, 41], // size of the shadow
       iconAnchor:   [20, 36], // point of the icon which will correspond to marker's location
@@ -66,7 +77,7 @@ DTB.home = {
 
     function onLocationFound(e) {
       var radius = e.accuracy / 2;
-      L.marker(e.latlng, {icon: defaultIcon}).addTo(map)
+      current_position = L.marker(e.latlng, {icon: defaultIcon}).addTo(map)
         .bindPopup("You are here").openPopup();
       L.circle(e.latlng, radius).addTo(map);
     }
