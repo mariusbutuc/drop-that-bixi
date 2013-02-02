@@ -30,9 +30,8 @@ DTB.home = {
     // add an OpenStreetMap tile layer
     current_position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+      attribution: '&copy;2013 Tripod Inc'
     }).addTo(map);
-
 
     var defaultIcon = L.icon({
       iconUrl:      '/assets/marker-red-pin.png',

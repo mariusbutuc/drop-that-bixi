@@ -18,15 +18,7 @@
 
 
   %body
-    .container-fluid
-      .row-fluid
-        .span12
-          = yield
+    = yield
 
-      %footer
-        %p &copy; Tripod Inc 2013
-    /
-      Javascripts
-      \==================================================
-    / Placed at the end of the document so the pages load faster
+    / JS: Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
