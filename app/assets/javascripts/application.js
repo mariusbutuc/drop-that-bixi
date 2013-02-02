@@ -32,14 +32,7 @@ DTB.maps = {
     }).addTo(this.map);
 
     // add Leaflet.Locate: A useful control to geolocate the user with many options.
-    L.control.locate({
-      position: 'topleft',  // set the location of the control
-      drawCircle: true,  // controls whether a circle is drawn that shows the uncertainty about the location
-      follow: false,  // follow the location if `watch` and `setView` are set to true in locateOptions
-      circleStyle: {},  // change the style of the circle around the user's location
-      markerStyle: {},
-      metric: true  // use metric or imperial units
-    }).addTo(this.map);
+    L.control.locate().addTo(this.map);
   }
 
 }

@@ -44,7 +44,6 @@ DTB.home = {
     });
 
     for (station in data) {
-      // var date = $.timeago( new Date(Date(data[station].lastUpdate)).toISOString() );
       var date = $.timeago( new Date(Number(data[station].lastUpdate)))
 
       marker = L.marker([data[station].latitude, data[station].longitude], {icon: bikeIcon}).addTo(map);
