@@ -15,7 +15,8 @@
 #
 
 class Station < ActiveRecord::Base
-  attr_accessor :bixi_id, :name, :terminalName, :lat, :long, :installDate, :removalDate
+  attr_accessible :bixi_id, :name, :terminalName, :latitude, :longitude, :installDate, :removalDate
+  GHETTO_ATTRS = ['name', 'terminalName', 'installDate', 'removalDate']
 
   has_many :station_histories
 

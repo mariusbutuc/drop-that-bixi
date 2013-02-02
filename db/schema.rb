@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(:version => 20130202033722) do
 
   create_table "station_histories", :force => true do |t|
-    t.integer  "lastCommWithServer"
+    t.string   "lastCommWithServer"
     t.boolean  "installed"
     t.boolean  "locked"
     t.boolean  "temporary"
     t.boolean  "public"
     t.integer  "nbBikes"
     t.integer  "nbEmptyDocks"
-    t.integer  "latestUpdateTime"
+    t.string   "latestUpdateTime"
     t.integer  "station_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false

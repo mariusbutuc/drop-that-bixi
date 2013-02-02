@@ -6,8 +6,8 @@ class CreateStations < ActiveRecord::Migration
       t.string  :terminalName
       t.float   :latitude
       t.float   :longitude
-      t.integer :installDate
-      t.integer :removalDate
+      t.string :installDate
+      t.string :removalDate
 
       t.timestamps
     end
