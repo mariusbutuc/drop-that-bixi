@@ -15,20 +15,29 @@ DTB.home = {
     var latitude = location.coords.latitude;
     var longitude = location.coords.longitude;
 
-    DTB.maps.init(latitude, longitude);
-
     // send request to ajax endpoint
     var url = '/stations.json?latitude=' + latitude + '&longitude=' + longitude;
     $.ajax(url, {
       success: DTB.home.getStations
     });
-
-
   },
 
   getStations: function (data, status, jqXHR) {
-    var marker, station;
-    var map = DTB.maps.map;
+    var current_position, marker, station;
+    var map = L.map('map');
+
+    // add an OpenStreetMap tile layer
+    current_position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy;2013 DropThatBixi &amp; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+
+    var defaultIcon = L.icon({
+      iconUrl: '/assets/marker-icon.png',
+      shadowUrl: '/assets/marker-shadow.png',
+    });
+
     var bikeIcon = L.icon({
       iconUrl: '/assets/marker-bike.png',
       shadowUrl: '/assets/marker-shadow.png',
@@ -50,6 +59,17 @@ DTB.home = {
         + 'Last change ' + date
       );
     }
+
+    function onLocationFound(e) {
+      var radius = e.accuracy / 2;
+      L.marker(e.latlng, {icon: defaultIcon}).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+      L.circle(e.latlng, radius).addTo(map);
+    }
+
+    map.on('locationfound', onLocationFound);
+
+    map.locate({setView: true, maxZoom: 16});
   },
 
   loadLocationError: function (e) {
