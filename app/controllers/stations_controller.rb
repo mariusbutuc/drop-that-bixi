@@ -13,7 +13,7 @@ class StationsController < ApplicationController
     nfa = []
     cur_loc = LookupRequest.create(:latitude => params[:latitude], :longitude => params[:longitude])
     fakey = Station.new(:latitude => cur_loc.latitude, :longitude => cur_loc.longitude)
-    fakey.nearbys(0.3, :order => 'distance').limit(3).each {|station| nfa << station.getInfo if station.latestHasBikes}
+    fakey.nearbys(1, :order => 'distance').each {|station| nfa << station.getInfo if station.latestHasBikes}
 
     respond_with nfa.to_json
   end
@@ -22,7 +22,16 @@ class StationsController < ApplicationController
     nfa = []
     cur_loc = LookupRequest.create(:latitude => params[:latitude], :longitude => params[:longitude])
     fakey = Station.new(:latitude => cur_loc.latitude, :longitude => cur_loc.longitude)
-    fakey.nearbys(0.3).each {|station| nfa << station.getInfo if station.latestHasSpaces}
+    fakey.nearbys(1, :order => 'distance').each {|station| nfa << station.getInfo if station.latestHasSpaces}
+
+    respond_with nfa.to_json
+  end
+
+  def findIntersection
+    nfa = []
+    cur_loc = Geocoder.search(params[:search_string])
+    fakey = Station.new(:latitude => cur_loc[0].geometry['location']['lat'], :longitude => cur_loc[0].geometry['location']['long'])
+    fakey.nearbys(1, :order => 'distance').each {|station| nfa << station.getInfo}
 
     respond_with nfa.to_json
   end

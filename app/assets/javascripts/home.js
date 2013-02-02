@@ -35,8 +35,7 @@ DTB.home = {
 
     // add an OpenStreetMap tile layer
     open_street_map_tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '&copy;2013 Tripod Inc'
+      maxZoom: 18
     });
 
     open_street_map_tiles.addTo(map);
@@ -73,22 +72,22 @@ DTB.home = {
       shadowAnchor: [17, 38], // the same for the shadow
       popupAnchor:  [0, -26]  // point from which the popup should open relative to the iconAnchor
     });
-    
+
     var goodBikeIcon = L.icon({
       iconUrl: '/assets/marker-bike-good.png',
       shadowUrl: '/assets/marker-shadow.png',
-      
+
       iconSize:     [32, 37], // size of the icon
       shadowSize:   [41, 41], // size of the shadow
       iconAnchor:   [20, 36], // point of the icon which will correspond to marker's location
       shadowAnchor: [17, 38], // the same for the shadow
       popupAnchor:  [0, -26]  // point from which the popup should open relative to the iconAnchor
     });
-    
+
     var maybeBikeIcon = L.icon({
       iconUrl: '/assets/marker-bike-good.png',
       shadowUrl: '/assets/marker-shadow.png',
-      
+
       iconSize:     [32, 37], // size of the icon
       shadowSize:   [41, 41], // size of the shadow
       iconAnchor:   [20, 36], // point of the icon which will correspond to marker's location
@@ -101,7 +100,7 @@ DTB.home = {
       var s = data[station];
       var date = $.timeago( new Date(Number(data[station].lastUpdate)));
       var icon = bikeIcon;
-      
+
       if (s.numBikes == 0) {
         icon = badBikeIcon;
       } else if (s.numBikes < 4) {
@@ -114,7 +113,8 @@ DTB.home = {
       marker.bindPopup('<strong>' + data[station].name + '</strong><br>'
         + '&middot; ' + data[station].numBikes + ' available Bixi bikes<br/>'
         + '&middot; ' + data[station].spacesFree + ' empty spaces<br>'
-        + 'Last change ' + date
+        + 'Last change ' + date + '</br></br>'
+        + '<button class="btn" id="location-share">Share this link</button>'
       );
     }
 
@@ -138,4 +138,8 @@ DTB.home = {
 
 $(function () {
   DTB.home.init();
+
+  $('#location-share').click(function() {
+    window.prompt ("Copy to clipboard: Ctrl+C, Enter", "http://"+window.location.pathname);
+  });
 });
