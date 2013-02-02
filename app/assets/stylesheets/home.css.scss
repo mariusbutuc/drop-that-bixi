@@ -6,13 +6,19 @@
 
 #logo {
   position:absolute;
-  top:0;
-  right:0;
-  width:300px;
-  height:80px;
+  top:15px;
+  right:15px;
   padding:0;
   margin:0;
   z-index: 100;
+  font-family: 'Lobster', cursive;
+  color: #FFA500;
+  text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
 }
 
 .leaflet-popup-tip {

@@ -4,7 +4,7 @@ class StationsController < ApplicationController
   def index
     nfa = []
     Station.all.each {|station| nfa << station.getInfo}
-    LookupRequest.create(:latitude => params[:latitude], :longitude => params[:longitude])
+    # LookupRequest.create(:latitude => params[:latitude], :longitude => params[:longitude])
 
     respond_with nfa.to_json
   end
