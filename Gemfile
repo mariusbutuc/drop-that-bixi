@@ -14,4 +14,5 @@ group :assets do
   gem 'sass-rails'
   gem 'uglifier'
   gem 'twitter-bootstrap-rails'
+  gem 'haml-rails'
 end
