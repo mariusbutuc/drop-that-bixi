@@ -9,7 +9,7 @@ class StationsController < ApplicationController
       res.concat(",history:{#{history.to_json}}")
       nfa[station.bixi_id] = res
     end
-    render nfa.to_json
+    respond_with nfa.to_json
   end
 
 end
