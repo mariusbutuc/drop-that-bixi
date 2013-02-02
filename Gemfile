@@ -18,6 +18,12 @@ gem "libv8"
 gem "therubyracer"
 gem "haml"
 
+group :development do
+  gem 'annotate'
+  gem 'thin'
+  gem 'railroady'
+end
+
 group :assets do
   gem 'sass-rails'
   gem 'uglifier'
