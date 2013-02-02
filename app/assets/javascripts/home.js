@@ -9,7 +9,6 @@ DTB.home = {
     if ($('html.geolocation').length) {
       navigator.geolocation.getCurrentPosition(this.loadAllLocations, this.loadLocationError);
       $('#find-bixi').button('toggle');
-      $('.btn.location-share').click(this.locationSharing);
     }
   },
 
@@ -134,8 +133,10 @@ DTB.home = {
         + '&middot; ' + data[station].numBikes + ' available Bixi bikes<br/>'
         + '&middot; ' + data[station].spacesFree + ' empty spaces<br>'
         + 'Last change ' + date + '</br></br>'
-        + '<button class="btn location-share">Share this link</button>'
+        + '<button class="btn location-share" onclick="DTB.home.locationSharing();">Share this link</button>'
       );
+
+
     }
 
     function onLocationFound(e) {
@@ -153,7 +154,7 @@ DTB.home = {
   },
 
   locationSharing: function(e) {
-    alert(window.location.href);
+    prompt("Share this link",window.location.href);
   }
 
 }
