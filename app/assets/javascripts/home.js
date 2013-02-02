@@ -21,9 +21,9 @@ DTB.home = {
     // send request to ajax endpoint
     var url = '/stations.json?lat=' + latitude + '&long=' + longitude;
     console.log(url);
-    // $.ajax(url, {
-    //   success: this.getClosestStations
-    // });
+    $.ajax(url, {
+      success: this.getClosestStations
+    });
 
     var map = L.map('map').setView([latitude, longitude], 17);
 
