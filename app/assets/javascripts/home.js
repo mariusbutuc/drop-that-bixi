@@ -133,8 +133,10 @@ DTB.home = {
         + '&middot; ' + data[station].numBikes + ' available Bixi bikes<br/>'
         + '&middot; ' + data[station].spacesFree + ' empty spaces<br>'
         + 'Last change ' + date + '</br></br>'
-        + '<button class="btn" id="location-share">Share this link</button>'
+        + '<button class="btn location-share" onclick="DTB.home.locationSharing();">Share this link</button>'
       );
+
+
     }
 
     function onLocationFound(e) {
@@ -149,6 +151,10 @@ DTB.home = {
 
   loadLocationError: function (e) {
     console.log(e);
+  },
+
+  locationSharing: function(e) {
+    prompt("Share this link",window.location.href);
   }
 
 }
@@ -163,7 +169,4 @@ $(function () {
     $('#drop-bixi').button('toggle');
   });
 
-  $('#location-share').click(function() {
-    window.prompt ("Copy to clipboard: Ctrl+C, Enter", "http://"+window.location.pathname);
-  });
 });
