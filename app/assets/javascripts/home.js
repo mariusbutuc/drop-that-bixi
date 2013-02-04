@@ -114,24 +114,23 @@ DTB.home = {
       popupAnchor:  [0, -26]  // point from which the popup should open relative to the iconAnchor
     });
 
-
-    for (station in data) {
-      var s = data[station];
-      var date = $.timeago( new Date(Number(data[station].lastUpdate)));
+    for (station_id in data) {
+      var station = data[station_id];
+      var date = $.timeago( new Date(Number(station.lastUpdate)));
       var icon = bikeIcon;
 
-      if (s.numBikes == 0) {
+      if (station.numBikes == 0) {
         icon = badBikeIcon;
-      } else if (s.numBikes < 4) {
+      } else if (station.numBikes < 4) {
         icon = maybeBikeIcon;
       } else {
         icon = goodBikeIcon;
       }
 
-      marker = L.marker([data[station].latitude, data[station].longitude], {icon: icon}).addTo(map);
-      marker.bindPopup('<strong>' + data[station].name + '</strong><br>'
-        + '&middot; ' + data[station].numBikes + ' available Bixi bikes<br/>'
-        + '&middot; ' + data[station].spacesFree + ' empty spaces<br>'
+      marker = L.marker([station.latitude, station.longitude], {icon: icon}).addTo(map);
+      marker.bindPopup('<strong>' + station.name + '</strong><br>'
+        + '&middot; ' + station.numBikes + ' available Bixi bikes<br/>'
+        + '&middot; ' + station.spacesFree + ' empty spaces<br>'
         + 'Last change ' + date + '</br></br>'
         + '<button class="btn location-share" onclick="DTB.home.locationSharing();">Share this link</button>'
       );
