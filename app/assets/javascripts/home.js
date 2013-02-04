@@ -27,9 +27,11 @@ DTB.home = {
   getStations: function (data, status, jqXHR) {
     var
       all_stations_layer,
+      base_maps,
       current_position, 
       href_parts,
-      open_street_map_tiles_layer;
+      open_street_map_tiles_layer,
+      overlay_maps;
     var map = L.map('map');
     var all_stations = []
     var params = {};
@@ -138,6 +140,14 @@ DTB.home = {
     }
     all_stations_layer = L.layerGroup(all_stations);
     all_stations_layer.addTo(map);
+
+    base_maps = {
+        "OpenStreetMap": open_street_map_tiles_layer
+    };
+    overlay_maps = {
+        "All stations": all_stations_layer
+    };
+    L.control.layers(base_maps, overlay_maps).addTo(map);
 
     function onLocationFound(e) {
       var radius = e.accuracy / 2;
