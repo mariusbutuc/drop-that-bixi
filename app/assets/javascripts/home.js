@@ -26,12 +26,9 @@ DTB.home = {
 
   getStations: function (data, status, jqXHR) {
     var
-      control,
       current_position, 
-      hash,
       marker,
-      open_street_map_tiles,
-      station;
+      open_street_map_tiles;
     var map = L.map('map');
 
     var params = {};
@@ -63,7 +60,7 @@ DTB.home = {
 
 
     // add the Locate control
-    control = L.control.locate().addTo(map);
+    L.control.locate().addTo(map);
 
     var defaultIcon = L.icon({
       iconUrl:      '/assets/marker-red-pin.png',
