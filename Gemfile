@@ -6,6 +6,7 @@ ruby '1.9.3'
 gem 'nokogiri'
 gem 'geocoder'
 gem 'thin'
+gem 'newrelic_rpm'
 
 # db
 gem 'pg'
