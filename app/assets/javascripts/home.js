@@ -26,14 +26,15 @@ DTB.home = {
 
   getStations: function (data, status, jqXHR) {
     var
+      all_stations_layer,
       current_position, 
-      marker,
-      open_street_map_tiles;
+      href_parts,
+      open_street_map_tiles_layer;
     var map = L.map('map');
-
+    var all_stations = []
     var params = {};
-    var href_parts = window.location.href.split("/#");
 
+    href_parts = window.location.href.split("/#");
     if (href_parts.length > 1) {
       var scraped_params = href_parts[1].split("/");
       params['z']   = scraped_params[0];
@@ -48,11 +49,11 @@ DTB.home = {
     }
 
     // add an OpenStreetMap tile layer
-    open_street_map_tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    open_street_map_tiles_layer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 18
     });
 
-    open_street_map_tiles.addTo(map);
+    open_street_map_tiles_layer.addTo(map);
 
     // persist app state in the URL
     // hash = new L.Hash(map);
@@ -112,6 +113,7 @@ DTB.home = {
     });
 
     for (station_id in data) {
+      var marker;
       var station = data[station_id];
       var date = $.timeago( new Date(Number(station.lastUpdate)));
       var icon = bikeIcon;
@@ -124,7 +126,7 @@ DTB.home = {
         icon = goodBikeIcon;
       }
 
-      marker = L.marker([station.latitude, station.longitude], {icon: icon}).addTo(map);
+      marker = L.marker([station.latitude, station.longitude], {icon: icon});
       marker.bindPopup('<strong>' + station.name + '</strong><br>'
         + '&middot; ' + station.numBikes + ' available Bixi bikes<br/>'
         + '&middot; ' + station.spacesFree + ' empty spaces<br>'
@@ -132,8 +134,10 @@ DTB.home = {
         + '<button class="btn location-share" onclick="DTB.home.locationSharing();">Share this link</button>'
       );
 
-
+      all_stations.push(marker);
     }
+    all_stations_layer = L.layerGroup(all_stations);
+    all_stations_layer.addTo(map);
 
     function onLocationFound(e) {
       var radius = e.accuracy / 2;
