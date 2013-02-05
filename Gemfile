@@ -22,6 +22,7 @@ gem "haml"
 group :development do
   gem 'annotate'
   gem 'railroady'
+  gem 'af'
 end
 
 group :assets do
