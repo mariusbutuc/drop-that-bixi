@@ -1,0 +1,17 @@
+---
+applications:
+  .:
+    name: drop-that-bixi
+    framework:
+      name: rails3
+      info:
+        mem: 256M
+        description: Rails Application
+        exec: 
+    infra: aws
+    url: ${name}.${target-base}
+    mem: 256M
+    instances: 1
+    services:
+      postgresql-8656f:
+        type: postgresql

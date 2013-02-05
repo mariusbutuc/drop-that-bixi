@@ -2,7 +2,6 @@ source 'http://rubygems.org'
 
 # core
 gem 'rails', '3.2.11'
-ruby '1.9.3'
 gem 'nokogiri'
 gem 'geocoder'
 gem 'thin'
