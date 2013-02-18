@@ -30,7 +30,8 @@ DTB.home = {
       base_maps,
       current_position, 
       href_parts,
-      open_street_map_tiles_layer,
+      osm_layer,
+      gmap_layer,
       overlay_maps;
     var map = L.map('map');
     var all_stations = []
@@ -51,11 +52,13 @@ DTB.home = {
     }
 
     // add an OpenStreetMap tile layer
-    open_street_map_tiles_layer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      maxZoom: 18
-    });
+    // osm_layer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    //   maxZoom: 18
+    // });
+    // osm_layer.addTo(map);
 
-    open_street_map_tiles_layer.addTo(map);
+    gmap_layer = new L.Google('ROADMAP');
+    map.addLayer(gmap_layer);
 
     // persist app state in the URL
     // hash = new L.Hash(map);
@@ -142,7 +145,8 @@ DTB.home = {
     all_stations_layer.addTo(map);
 
     base_maps = {
-        "OpenStreetMap": open_street_map_tiles_layer
+        // "OpenStreetMap" : osm_layer,
+        "Google Maps"   : gmap_layer
     };
     overlay_maps = {
         "All stations": all_stations_layer

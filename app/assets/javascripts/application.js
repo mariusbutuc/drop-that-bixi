@@ -11,4 +11,5 @@
 //= require leaflet-src
 //= require leaflet.hash
 //= require L.Control.Locate
+//= require leaflet-google
 //= require_tree .
